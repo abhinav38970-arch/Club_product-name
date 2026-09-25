@@ -1,16 +1,19 @@
 import type { ReactNode } from "react";
 import { CLUB_NAME } from "@/lib/game/config";
+import { Scene3D } from "./Scene3D";
+import { StageTilt } from "./StageTilt";
 
 export function GameShell({ children }: { children: ReactNode }) {
   return (
     <div className="game-root relative min-h-dvh overflow-x-clip bg-[#070b18] text-slate-100">
-      {/* atmosphere */}
+      {/* living 3D environment */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-grid" />
+        <Scene3D />
         <div className="absolute -top-32 left-1/2 h-96 w-[42rem] -translate-x-1/2 rounded-full bg-cyan-500/20 blur-[120px]" />
         <div className="absolute top-1/3 -left-24 h-80 w-80 rounded-full bg-fuchsia-500/15 blur-[100px]" />
         <div className="absolute bottom-0 -right-24 h-80 w-80 rounded-full bg-lime-400/10 blur-[100px]" />
         <div className="absolute inset-0 bg-noise opacity-[0.5]" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#070b18] via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 mx-auto flex min-h-dvh w-full max-w-xl flex-col px-4 pb-8 pt-5 sm:px-6 sm:pt-8">
@@ -34,7 +37,11 @@ export function GameShell({ children }: { children: ReactNode }) {
           </div>
         </header>
 
-        <main className="flex flex-1 flex-col justify-center py-6">{children}</main>
+        <main className="stage-perspective flex flex-1 flex-col justify-center py-6">
+          <StageTilt>
+            <div className="stage-3d">{children}</div>
+          </StageTilt>
+        </main>
 
         <footer className="pt-2 text-center text-[11px] font-medium tracking-wide text-slate-500">
           Built with AI by {CLUB_NAME} · No coding required to play

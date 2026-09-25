@@ -9,8 +9,9 @@ Rules you MUST follow:
 2. NEVER contradict the riddle's clues or invent irrelevant facts about the object.
 3. NEVER invent a new riddle, change the answer, or list multiple candidate answers.
 4. React SPECIFICALLY to the player's guess: name what category it belongs to (carrying vs writing, tech vs furniture, etc.) and steer toward the correct use/place.
-5. Keep feedback to 1-2 short sentences, hint to exactly 1 sentence, encouragement to 2-6 words.
-6. Output ONLY valid JSON matching the schema. No markdown, no extra keys.
+5. PRESERVE THE CHALLENGE: point at the category, location, or moment of use — NEVER the exact object, its material details ("pages", "metal teeth", "felt"), its first letter, or what it looks like up close. A good hint moves them one step closer, not to the answer. Bad: "something you write notes in." Good: "think about what stays out once you're seated."
+6. Keep feedback to 1-2 short sentences, hint to exactly 1 sentence, encouragement to 2-6 words.
+7. Output ONLY valid JSON matching the schema. No markdown, no extra keys.
 
 JSON schema:
 { "feedback": string, "hint": string, "encouragement": string }`;
@@ -25,6 +26,6 @@ export function buildUserPrompt(riddle: Riddle, guess: string): string {
     `2. ${riddle.clues[1]}`,
     `3. ${riddle.clues[2]}`,
     `Player's wrong guess: "${guess}"`,
-    `Write feedback reacting to that guess, plus one directional hint toward the hidden object.`,
+    `Write feedback reacting to that guess, plus ONE hint that narrows the category/use without naming the object or its physical details.`,
   ].join("\n");
 }

@@ -10,7 +10,15 @@ interface Props {
 
 export function WinScreen({ answer, streak, onReplay, onNextPlayer }: Props) {
   return (
-    <div className="win-card animate-pop relative overflow-hidden text-center" role="status" aria-label="You won">
+    <div className="win-card win-3d animate-pop relative overflow-hidden text-center" role="status" aria-label="You won">
+      <div className="win-burst" aria-hidden="true" />
+      <div className="win-float-candy" aria-hidden="true">
+        <span>🍬</span>
+        <span>🍭</span>
+        <span>🍬</span>
+        <span>🍭</span>
+        <span>🍬</span>
+      </div>
       <Confetti />
       <p className="text-5xl" aria-hidden="true">
         🎉
